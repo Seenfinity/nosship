@@ -1,42 +1,25 @@
 /**
- * Custom Plugin Entry Point
+ * NosShip — Plugin: plugin-nosana-deploy
  *
- * This file is where you can define custom actions, providers, and evaluators
- * for your ElizaOS agent. Add your logic here and reference this plugin in
- * your character file.
- *
- * ElizaOS Plugin Docs: https://elizaos.github.io/eliza/docs/core/plugins
+ * DevOps tools for analyzing Dockerfiles, validating Nosana job definitions,
+ * reviewing environment configs, and generating deployment files for GPU
+ * workloads on the Nosana decentralized network.
  */
 
 import { type Plugin } from "@elizaos/core";
+import { analyzeDockerfile } from "./actions/analyzeDockerfile.js";
+import { validateNosanaJob } from "./actions/validateNosanaJob.js";
+import { reviewEnvConfig } from "./actions/reviewEnvConfig.js";
+import { generateDeployFiles } from "./actions/generateDeployFiles.js";
+import { nosanaContextProvider } from "./providers/nosanaContext.js";
 
-/**
- * Example custom action.
- * Replace this with your own action logic.
- */
-const exampleAction = {
-  name: "EXAMPLE_ACTION",
-  description: "An example action — replace with your own.",
-  similes: ["DEMO", "SAMPLE"],
-  validate: async () => true,
-  handler: async (_runtime: unknown, message: { content: { text: string } }) => {
-    console.log("Custom action triggered with message:", message.content.text);
-    return true;
-  },
-  examples: [],
-};
-
-/**
- * Your custom plugin.
- * Add this plugin's name to the `plugins` array in your character file
- * to activate it.
- */
-export const customPlugin: Plugin = {
-  name: "custom-plugin",
-  description: "My custom ElizaOS plugin",
-  actions: [exampleAction],
-  providers: [],
+export const nosanaDeployPlugin: Plugin = {
+  name: "plugin-nosana-deploy",
+  description:
+    "DevOps tools for Nosana GPU deployments — analyze Dockerfiles, validate job definitions, review env configs, and generate deploy files.",
+  actions: [analyzeDockerfile, validateNosanaJob, reviewEnvConfig, generateDeployFiles],
+  providers: [nosanaContextProvider],
   evaluators: [],
 };
 
-export default customPlugin;
+export default nosanaDeployPlugin;

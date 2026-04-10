@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
   make \
   g++ \
   git \
+  curl \
   && rm -rf /var/lib/apt/lists/*
 
 # Disable telemetry
@@ -33,5 +34,8 @@ EXPOSE 3000
 
 ENV NODE_ENV=production
 ENV SERVER_PORT=3000
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD curl -f http://localhost:3000/ || exit 1
 
 CMD ["pnpm", "start"]
