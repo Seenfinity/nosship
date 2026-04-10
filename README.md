@@ -1,4 +1,4 @@
-# Nosana x ElizaOS Agent Challenge
+# Nosana x ElizaOS Agents Challenge
 
 ![ElizaOS](./assets/NosanaXEliza.jpg)
 
