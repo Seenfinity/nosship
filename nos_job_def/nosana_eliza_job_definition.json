@@ -4,32 +4,29 @@
   "meta": {
     "trigger": "cli"
   },
-  "global": {
-    "environment": {}
-  },
   "ops": [
     {
       "type": "container/run",
       "id": "nosship-agent",
       "args": {
         "cmd": [],
-        "image": "registry.hub.docker.com/yourusername/nosship:latest",
-        "gpu": true,
+        "image": "registry.hub.docker.com/seenfinity/nosship:latest",
+        "gpu": false,
         "expose": 3000,
         "env": {
           "OPENAI_API_KEY": "nosana",
-          "OPENAI_API_URL": "__NOSANA_ENDPOINT_PLACEHOLDER__",
-          "MODEL_NAME": "qwen3.5-27b-awq-4bit",
-          "OPENAI_EMBEDDING_URL": "__NOSANA_EMBEDDING_ENDPOINT_PLACEHOLDER__",
+          "OPENAI_API_URL": "https://4fobHJEHBxVppziJnUir4GXEJQEsC2JdR4WJqSU7nNKc.node.k8s.prd.nos.ci/v1",
+          "OPENAI_BASE_URL": "https://4fobHJEHBxVppziJnUir4GXEJQEsC2JdR4WJqSU7nNKc.node.k8s.prd.nos.ci/v1",
+          "MODEL_NAME": "qwen3.5:27b",
+          "OPENAI_LARGE_MODEL": "qwen3.5:27b",
+          "OPENAI_SMALL_MODEL": "qwen3.5:27b",
+          "OPENAI_EMBEDDING_URL": "https://4fobHJEHBxVppziJnUir4GXEJQEsC2JdR4WJqSU7nNKc.node.k8s.prd.nos.ci/v1",
           "OPENAI_EMBEDDING_API_KEY": "nosana",
           "OPENAI_EMBEDDING_MODEL": "Qwen3-Embedding-0.6B",
           "OPENAI_EMBEDDING_DIMENSIONS": "1024",
           "SERVER_PORT": "3000",
           "NODE_ENV": "production"
         }
-      },
-      "execution": {
-        "group": "run"
       }
     }
   ]

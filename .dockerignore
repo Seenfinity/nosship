@@ -6,46 +6,41 @@
 node_modules
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
 
-# Environment files
-.env.local
-.env.example
-.env.*.local
+# Env (injected at runtime via job definition)
+.env
 .env.*
 
-# Build output
-.mastra/
+# Build output (rebuilt inside container)
 dist/
 build/
+.mastra/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Documentation
-*.md
-LICENSE
-
 # Docker
 Dockerfile
 .dockerignore
 
-# Temporary files
+# Runtime data
+.eliza/
+data/
+
+# Temporary
 *.tmp
 *.temp
 .cache/
-
-# Test files
 coverage/
-.nyc_output/
-*.test.js
-*.spec.js
+
+# Not needed in image
+assets/
+nos_job_def/
