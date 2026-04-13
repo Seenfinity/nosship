@@ -1,10 +1,24 @@
 import type { Provider } from "@elizaos/core";
 import { VALID_GPU_MARKETS, CUDA_BASE_IMAGES, GPU_SERVICE_REQUIRED_VARS } from "../utils/constants.js";
 
-const NOSANA_CONTEXT = `## NosShip — Deployment Context for Nosana
+const NOSANA_CONTEXT = `## NosShip — Personal Agent Factory & Deployment Platform
+
+### Agent Factory Workflow
+1. **DESIGN_AGENT** → User describes what agent they want in natural language → generates a complete ElizaOS v2 character file (name, bio, system prompt, plugins, topics, message examples)
+2. **SELECT_PLUGINS** → Analyzes requirements and recommends the optimal ElizaOS plugin stack with env vars and install commands
+3. **GENERATE_DEPLOY_FILES** → Creates Dockerfile + Nosana job definition + .dockerignore for deployment
+4. **ANALYZE_DOCKERFILE** → Reviews existing Dockerfiles for GPU anti-patterns
+5. **VALIDATE_NOSANA_JOB** → Validates Nosana job definition JSON schema
+6. **REVIEW_ENV_CONFIG** → Audits .env files for secrets, localhost refs, missing vars
 
 ### Available Tools
-You have 4 specialized actions for deployment analysis:
+You have 6 specialized actions:
+
+**Agent Design (Phase 1):**
+- **DESIGN_AGENT**: User describes the agent they want in plain English → generates complete character JSON with name, bio, system prompt, plugins, topics, adjectives, message examples, and style
+- **SELECT_PLUGINS**: Recommends ElizaOS plugins based on requirements — knows: plugin-bootstrap, plugin-openai, plugin-anthropic, plugin-ollama, plugin-solana, plugin-evm, plugin-discord, plugin-telegram, plugin-twitter, plugin-farcaster, plugin-web-search, plugin-image-generation, plugin-pdf, plugin-video-generation
+
+**Deployment (Phase 2):**
 - **ANALYZE_DOCKERFILE**: Paste a Dockerfile to detect GPU anti-patterns (missing multi-stage, no CUDA, broken cache, no HEALTHCHECK)
 - **VALIDATE_NOSANA_JOB**: Paste a Nosana job definition JSON to validate schema, image paths, port exposure, GPU config
 - **REVIEW_ENV_CONFIG**: Paste .env content to detect hardcoded secrets, localhost refs, missing vars, insecure settings

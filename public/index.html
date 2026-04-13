@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NosShip — Agent Factory</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,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">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' },
+            surface: { 800: '#1e1e2e', 900: '#11111b', 950: '#0a0a14' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    @keyframes pulse-dot { 0%,100%{opacity:.4} 50%{opacity:1} }
+    .typing-dot { animation: pulse-dot 1.4s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    pre { overflow-x: auto; }
+    code { font-size: 0.85em; }
+  </style>
+</head>
+<body class="bg-surface-950 text-gray-100">
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    const { useState, useEffect, useRef, useCallback } = React;
+
+    /* ================================================================ */
+    /*  Constants & helpers                                              */
+    /* ================================================================ */
+
+    const STORAGE_KEY = 'nosship-designs';
+
+    function uid() {
+      return crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36);
+    }
+
+    function loadDesigns() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+    }
+    function saveDesigns(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+
+    /* Try to sync with server */
+    let API_BASE = null;
+    async function discoverApi() {
+      try {
+        const r = await fetch('/api/agents');
+        const j = await r.json();
+        const agent = j?.data?.agents?.find(a => a.name === 'NosShip');
+        if (agent) {
+          API_BASE = `/api/agents/${agent.id}/plugins/plugin-nosana-deploy`;
+          return agent.id;
+        }
+      } catch {}
+      return null;
+    }
+
+    async function syncToServer(design) {
+      if (!API_BASE) return;
+      try {
+        await fetch(`${API_BASE}/designs`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(design)
+        });
+      } catch {}
+    }
+
+    async function deleteFromServer(id) {
+      if (!API_BASE) return;
+      try { await fetch(`${API_BASE}/designs/${id}`, { method: 'DELETE' }); } catch {}
+    }
+
+    /* Parse markdown-ish text to simple HTML */
+    function renderMd(text) {
+      if (!text) return '';
+      let s = text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) =>
+          `<pre class="bg-surface-950 rounded-lg p-3 my-2 text-sm overflow-x-auto border border-gray-800"><code>${code.trim()}</code></pre>`)
+        .replace(/`([^`]+)`/g, '<code class="bg-surface-950 px-1.5 py-0.5 rounded text-indigo-300 text-sm">$1</code>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white">$1</strong>')
+        .replace(/^\s*###\s+(.+)$/gm, '<h3 class="text-lg font-semibold text-white mt-4 mb-1">$1</h3>')
+        .replace(/^\s*##\s+(.+)$/gm, '<h2 class="text-xl font-bold text-white mt-4 mb-2">$1</h2>')
+        .replace(/^\s*[-*]\s+(.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
+        .replace(/^\s*\d+\.\s+(.+)$/gm, '<li class="ml-4 list-decimal">$1</li>')
+        .replace(/^\s*>\s+(.+)$/gm, '<blockquote class="border-l-2 border-indigo-500 pl-3 my-2 text-gray-400 italic">$1</blockquote>')
+        .replace(/\n{2,}/g, '<br/><br/>')
+        .replace(/\n/g, '<br/>');
+      return s;
+    }
+
+    /* Domain colors/labels */
+    const DOMAIN_COLORS = {
+      'crypto-monitoring': 'bg-yellow-900/40 text-yellow-300 border-yellow-700',
+      'crypto-trading': 'bg-green-900/40 text-green-300 border-green-700',
+      'defi': 'bg-purple-900/40 text-purple-300 border-purple-700',
+      'community': 'bg-blue-900/40 text-blue-300 border-blue-700',
+      'social-media': 'bg-pink-900/40 text-pink-300 border-pink-700',
+      'dev-tools': 'bg-cyan-900/40 text-cyan-300 border-cyan-700',
+      'research': 'bg-orange-900/40 text-orange-300 border-orange-700',
+      'customer-support': 'bg-teal-900/40 text-teal-300 border-teal-700',
+      'content-creation': 'bg-rose-900/40 text-rose-300 border-rose-700',
+      'general': 'bg-gray-800/40 text-gray-300 border-gray-600',
+    };
+
+    const STATUS_BADGES = {
+      'created': 'bg-gray-700 text-gray-300',
+      'ready-to-deploy': 'bg-indigo-900/60 text-indigo-300',
+      'deployed': 'bg-green-900/60 text-green-300',
+    };
+
+    /* ================================================================ */
+    /*  Icons (inline SVG)                                              */
+    /* ================================================================ */
+
+    const Icons = {
+      plus: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M12 4v16m8-8H4"/></svg>,
+      grid: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>,
+      chat: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>,
+      code: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>,
+      rocket: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 003.46-8.62 2.25 2.25 0 00-2.18-2.18 14.98 14.98 0 00-8.62 3.46m6.34 7.34L7.09 21.16A2.25 2.25 0 013 19.53V17.4a2.25 2.25 0 01.66-1.59l.44-.44m9.64-6.85a1.5 1.5 0 112.12 2.12"/></svg>,
+      back: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>,
+      send: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>,
+      trash: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>,
+      copy: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>,
+    };
+
+    /* ================================================================ */
+    /*  Chat Hook                                                       */
+    /* ================================================================ */
+
+    /* ElizaOS SocketIO protocol constants */
+    const SOCKET_MSG = { ROOM_JOINING: 1, SEND_MESSAGE: 2 };
+    const SERVER_ID = '00000000-0000-0000-0000-000000000000';
+
+    function useNosShipChat(agentId) {
+      const [messages, setMessages] = useState([]);
+      const [isTyping, setIsTyping] = useState(false);
+      const socketRef = useRef(null);
+      const entityIdRef = useRef(crypto.randomUUID());
+      const channelIdRef = useRef(null);
+      const joinedRef = useRef(false);
+
+      useEffect(() => {
+        if (!agentId) return;
+
+        const socket = io(window.location.origin, {
+          auth: { entityId: entityIdRef.current },
+          transports: ['websocket', 'polling'],
+        });
+        socketRef.current = socket;
+
+        socket.on('connect', () => {
+          console.log('[NosShip] Socket connected:', socket.id);
+          joinedRef.current = false;
+        });
+
+        /* Response from the agent */
+        socket.on('messageBroadcast', (data) => {
+          if (data?.senderId === entityIdRef.current) return;
+          if (data?.entityId === entityIdRef.current) return;
+          setIsTyping(false);
+          setMessages(prev => [...prev, {
+            id: uid(),
+            role: 'assistant',
+            text: data?.text || data?.message || data?.content?.text || '(no response)',
+            ts: Date.now(),
+          }]);
+        });
+
+        socket.on('connect_error', (err) => {
+          console.warn('[NosShip] Socket error:', err.message);
+        });
+
+        return () => { socket.disconnect(); };
+      }, [agentId]);
+
+      const joinChannel = useCallback((channelId) => {
+        if (!socketRef.current || joinedRef.current) return;
+        /* Event "1" = ROOM_JOINING */
+        socketRef.current.emit(String(SOCKET_MSG.ROOM_JOINING), {
+          channelId: channelId,
+          entityId: entityIdRef.current,
+          agentId: agentId,
+          messageServerId: SERVER_ID,
+          metadata: { isDm: true, channelType: 'DM', targetUserId: agentId },
+        });
+        joinedRef.current = true;
+      }, [agentId]);
+
+      const sendMessage = useCallback((text) => {
+        if (!socketRef.current || !text.trim()) return;
+
+        /* Create channel on first message */
+        if (!channelIdRef.current) {
+          channelIdRef.current = crypto.randomUUID();
+        }
+
+        /* Join the channel if not done yet */
+        joinChannel(channelIdRef.current);
+
+        /* Add user message to UI immediately */
+        setMessages(prev => [...prev, {
+          id: uid(), role: 'user', text: text.trim(), ts: Date.now()
+        }]);
+        setIsTyping(true);
+
+        /* Event "2" = SEND_MESSAGE — uses ElizaOS protocol fields */
+        socketRef.current.emit(String(SOCKET_MSG.SEND_MESSAGE), {
+          channelId: channelIdRef.current,
+          senderId: entityIdRef.current,
+          senderName: 'User',
+          message: text.trim(),
+          messageServerId: SERVER_ID,
+          source: 'socketio',
+          targetUserId: agentId,
+          metadata: { isDm: true, channelType: 'DM', targetUserId: agentId },
+        });
+      }, [agentId, joinChannel]);
+
+      return { messages, sendMessage, isTyping };
+    }
+
+    /* ================================================================ */
+    /*  Agent Chat Hook — direct LLM via proxy                          */
+    /* ================================================================ */
+
+    function useAgentChat(design) {
+      const [messages, setMessages] = useState([]);
+      const [isTyping, setIsTyping] = useState(false);
+      const historyRef = useRef([]);
+
+      /* Build system prompt from the character JSON */
+      const systemPrompt = React.useMemo(() => {
+        if (!design?.characterJson) return 'You are a helpful assistant.';
+        try {
+          const c = JSON.parse(design.characterJson);
+          const parts = [];
+          if (c.system) parts.push(c.system);
+          else {
+            if (c.name) parts.push(`You are ${c.name}.`);
+            if (Array.isArray(c.bio)) parts.push(c.bio.join(' '));
+            else if (c.bio) parts.push(c.bio);
+          }
+          if (c.style?.all?.length) parts.push('Style guidelines: ' + c.style.all.join('. '));
+          if (c.style?.chat?.length) parts.push('Chat style: ' + c.style.chat.join('. '));
+          return parts.join('\n\n') || 'You are a helpful assistant.';
+        } catch { return 'You are a helpful assistant.'; }
+      }, [design?.characterJson]);
+
+      const sendMessage = useCallback(async (text) => {
+        if (!text.trim() || isTyping) return;
+
+        setMessages(prev => [...prev, { id: uid(), role: 'user', text: text.trim(), ts: Date.now() }]);
+        setIsTyping(true);
+
+        historyRef.current.push({ role: 'user', content: text.trim() });
+        const llmMessages = [
+          { role: 'system', content: systemPrompt },
+          ...historyRef.current.slice(-20),
+        ];
+
+        /* Create a placeholder assistant message that we'll stream into */
+        const assistantId = uid();
+        setMessages(prev => [...prev, { id: assistantId, role: 'assistant', text: '', ts: Date.now() }]);
+
+        let fullText = '';
+
+        try {
+          const r = await fetch(`${API_BASE}/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: llmMessages }),
+          });
+
+          if (!r.ok) {
+            const errJson = await r.json().catch(() => ({ error: 'LLM error' }));
+            fullText = errJson.error || '(Error)';
+            setMessages(prev => prev.map(m => m.id === assistantId ? { ...m, text: fullText } : m));
+            setIsTyping(false);
+            return;
+          }
+
+          const reader = r.body?.getReader();
+          if (!reader) {
+            const j = await r.json();
+            fullText = j.text || '(no response)';
+            setMessages(prev => prev.map(m => m.id === assistantId ? { ...m, text: fullText } : m));
+            historyRef.current.push({ role: 'assistant', content: fullText });
+            setIsTyping(false);
+            return;
+          }
+
+          const decoder = new TextDecoder();
+          let buffer = '';
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || '';
+
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (!trimmed.startsWith('data: ')) continue;
+              const payload = trimmed.slice(6);
+              if (payload === '[DONE]') continue;
+
+              try {
+                const chunk = JSON.parse(payload);
+                if (chunk.error) { fullText += chunk.error; continue; }
+                if (chunk.text) {
+                  fullText += chunk.text;
+                  /* Update the streaming message */
+                  const snapshot = fullText;
+                  setMessages(prev => prev.map(m => m.id === assistantId ? { ...m, text: snapshot } : m));
+                }
+              } catch {}
+            }
+          }
+
+          historyRef.current.push({ role: 'assistant', content: fullText });
+          if (!fullText) {
+            setMessages(prev => prev.map(m => m.id === assistantId ? { ...m, text: '(no response)' } : m));
+          }
+        } catch (err) {
+          setMessages(prev => prev.map(m => m.id === assistantId ? { ...m, text: fullText || '(Error connecting to LLM)' } : m));
+        } finally {
+          setIsTyping(false);
+        }
+      }, [systemPrompt, isTyping]);
+
+      return { messages, sendMessage, isTyping };
+    }
+
+    /* ================================================================ */
+    /*  Components                                                      */
+    /* ================================================================ */
+
+    /* --- Sidebar --- */
+    function Sidebar({ view, setView, agentCount }) {
+      const items = [
+        { id: 'create', label: 'Create', icon: Icons.plus },
+        { id: 'agents', label: 'My Agents', icon: Icons.grid, badge: agentCount },
+      ];
+      return (
+        <div className="w-16 md:w-56 bg-surface-900 border-r border-gray-800 flex flex-col h-full shrink-0">
+          {/* Logo */}
+          <div className="p-4 border-b border-gray-800">
+            <div className="flex items-center gap-2">
+              {API_BASE
+                ? <img src={`${API_BASE}/assets/logo.png`} alt="NosShip" className="w-8 h-8 rounded-lg object-cover" />
+                : <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">N</div>
+              }
+              <span className="hidden md:block font-semibold text-white">NosShip</span>
+            </div>
+            <p className="hidden md:block text-xs text-gray-500 mt-1">Agent Factory</p>
+          </div>
+
+          {/* Nav */}
+          <nav className="flex-1 p-2 space-y-1">
+            {items.map(item => (
+              <button key={item.id} onClick={() => setView(item.id)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm
+                  ${view === item.id
+                    ? 'bg-brand-600/20 text-brand-500 border border-brand-600/30'
+                    : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200 border border-transparent'
+                  }`}>
+                <item.icon />
+                <span className="hidden md:block">{item.label}</span>
+                {item.badge > 0 && (
+                  <span className="hidden md:inline ml-auto bg-gray-700 text-gray-300 text-xs px-1.5 py-0.5 rounded-full">{item.badge}</span>
+                )}
+              </button>
+            ))}
+          </nav>
+
+          {/* Footer */}
+          <div className="hidden md:block p-3 border-t border-gray-800">
+            <p className="text-xs text-gray-600">Powered by Nosana GPU</p>
+          </div>
+        </div>
+      );
+    }
+
+    /* --- Typing indicator --- */
+    function TypingIndicator() {
+      return (
+        <div className="flex items-center gap-1.5 px-4 py-2">
+          <div className="flex gap-1">
+            <span className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></span>
+            <span className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></span>
+            <span className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></span>
+          </div>
+          <span className="text-xs text-gray-500 ml-1">NosShip is thinking...</span>
+        </div>
+      );
+    }
+
+    /* --- Chat message --- */
+    function ChatMessage({ msg }) {
+      const isUser = msg.role === 'user';
+      return (
+        <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-3`}>
+          <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed
+            ${isUser
+              ? 'bg-brand-600 text-white rounded-br-md'
+              : 'bg-surface-800 text-gray-200 border border-gray-800 rounded-bl-md'
+            }`}>
+            {isUser
+              ? <p className="whitespace-pre-wrap">{msg.text}</p>
+              : <div dangerouslySetInnerHTML={{ __html: renderMd(msg.text) }} />
+            }
+          </div>
+        </div>
+      );
+    }
+
+    /* --- Chat Input --- */
+    function ChatInput({ onSend, disabled, placeholder }) {
+      const [text, setText] = useState('');
+      const ref = useRef(null);
+
+      const handleSend = () => {
+        if (!text.trim() || disabled) return;
+        onSend(text);
+        setText('');
+        ref.current?.focus();
+      };
+
+      return (
+        <div className="border-t border-gray-800 p-3 bg-surface-900">
+          <div className="flex gap-2 items-end">
+            <textarea ref={ref} value={text} onChange={e => setText(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
+              rows="1"
+              placeholder={placeholder || "Describe the agent you want to create..."}
+              className="flex-1 bg-surface-950 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white resize-none
+                focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30
+                placeholder-gray-500"
+              style={{ minHeight: '42px', maxHeight: '120px' }}
+              onInput={e => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
+            />
+            <button onClick={handleSend} disabled={disabled || !text.trim()}
+              className="bg-brand-600 hover:bg-brand-700 disabled:opacity-40 disabled:hover:bg-brand-600
+                text-white rounded-xl p-2.5 transition-colors shrink-0">
+              <Icons.send />
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    /* --- Create View (NosShip Chat) --- */
+    function CreateView({ agentId, onAgentCreated }) {
+      const { messages, sendMessage, isTyping } = useNosShipChat(agentId);
+      const scrollRef = useRef(null);
+      const processedRef = useRef(new Set());
+
+      useEffect(() => {
+        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+      }, [messages, isTyping]);
+
+      // Detect when DESIGN_AGENT produces a character file
+      useEffect(() => {
+        const last = messages.filter(m => m.role === 'assistant').slice(-1)[0];
+        if (!last || processedRef.current.has(last.id)) return;
+
+        const text = last.text || '';
+        // Look for a character JSON in the response
+        const jsonMatch = text.match(/```json\s*\n(\{[\s\S]*?"name"\s*:\s*"[^"]+[\s\S]*?\})\s*\n```/);
+        if (!jsonMatch) return;
+
+        try {
+          const char = JSON.parse(jsonMatch[1]);
+          if (!char.name || !char.plugins) return;
+
+          processedRef.current.add(last.id);
+
+          // Extract domain from the response
+          const domainMatch = text.match(/\*\*Domain\*\*:\s*(\S+)/);
+          const domain = domainMatch ? domainMatch[1] : 'general';
+
+          const design = {
+            id: uid(),
+            name: char.name,
+            username: char.username || char.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            domain: domain,
+            description: char.bio?.[0] || '',
+            plugins: char.plugins || [],
+            envVars: [],
+            characterJson: jsonMatch[1],
+            status: 'created',
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+          };
+
+          // Extract env vars from response
+          const envMatch = text.match(/```env\s*\n([\s\S]*?)```/);
+          if (envMatch) {
+            design.envVars = envMatch[1].trim().split('\n')
+              .map(l => l.split('=')[0].trim())
+              .filter(Boolean);
+          }
+
+          onAgentCreated(design);
+        } catch {}
+      }, [messages]);
+
+      return (
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="border-b border-gray-800 px-5 py-3 bg-surface-900 shrink-0">
+            <h1 className="text-lg font-semibold text-white">Create an Agent</h1>
+            <p className="text-xs text-gray-500">Describe what you want and NosShip builds it</p>
+          </div>
+
+          {/* Messages */}
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 scrollbar-thin">
+            {messages.length === 0 && (
+              <div className="flex flex-col items-center justify-center h-full text-center px-4">
+                {API_BASE
+                  ? <img src={`${API_BASE}/assets/logo.png`} alt="NosShip" className="w-20 h-20 rounded-2xl object-cover mb-4 shadow-lg shadow-brand-600/10" />
+                  : <div className="w-14 h-14 rounded-2xl bg-brand-600/20 border border-brand-600/30 flex items-center justify-center mb-4"><Icons.rocket /></div>
+                }
+                <h2 className="text-lg font-semibold text-white mb-2">What agent do you want to build?</h2>
+                <p className="text-sm text-gray-400 max-w-md mb-6">
+                  Describe your agent in plain English. NosShip will generate a complete character file, select the right plugins, and prepare deployment files.
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center max-w-lg">
+                  {[
+                    "A crypto price monitor for Solana with Telegram alerts",
+                    "A Discord community manager that moderates and posts summaries",
+                    "A DeFi yield hunter for Ethereum and Solana",
+                    "A Twitter agent that posts daily market analysis",
+                  ].map((suggestion, i) => (
+                    <button key={i} onClick={() => sendMessage("Create an agent: " + suggestion)}
+                      className="text-xs bg-surface-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg px-3 py-1.5 transition-colors">
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {messages.map(msg => <ChatMessage key={msg.id} msg={msg} />)}
+            {isTyping && <TypingIndicator />}
+          </div>
+
+          {/* Input */}
+          <ChatInput onSend={sendMessage} disabled={isTyping} placeholder="Describe the agent you want to create..." />
+        </div>
+      );
+    }
+
+    /* --- Pencil icon --- */
+    const PencilIcon = () => <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-1.06.56l-3.535.884.884-3.535a2 2 0 01.56-1.06z"/></svg>;
+
+    /* --- Agent Card --- */
+    function AgentCard({ design, onClick, onDelete, onRename }) {
+      const [editing, setEditing] = useState(false);
+      const [nameInput, setNameInput] = useState(design.name);
+      const inputRef = useRef(null);
+      const domainClass = DOMAIN_COLORS[design.domain] || DOMAIN_COLORS.general;
+      const statusClass = STATUS_BADGES[design.status] || STATUS_BADGES.created;
+
+      useEffect(() => { if (editing && inputRef.current) inputRef.current.focus(); }, [editing]);
+
+      function handleRenameSubmit(e) {
+        if (e) e.stopPropagation();
+        const trimmed = nameInput.trim();
+        if (trimmed && trimmed !== design.name) {
+          onRename(design.id, trimmed);
+        }
+        setEditing(false);
+      }
+
+      return (
+        <div onClick={editing ? undefined : onClick}
+          className="bg-surface-800 border border-gray-800 rounded-xl p-4 hover:border-brand-600/50
+            cursor-pointer transition-all hover:shadow-lg hover:shadow-brand-600/5 group relative">
+          {/* Delete button */}
+          <button onClick={e => { e.stopPropagation(); onDelete(design.id); }}
+            className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-all p-1 rounded-lg hover:bg-red-400/10">
+            <Icons.trash />
+          </button>
+
+          {/* Name + Edit button */}
+          <div className="flex items-center gap-1.5 mb-1 pr-6">
+            {editing ? (
+              <input ref={inputRef} value={nameInput}
+                onChange={e => setNameInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') handleRenameSubmit(); if (e.key === 'Escape') { setEditing(false); setNameInput(design.name); } }}
+                onBlur={handleRenameSubmit}
+                onClick={e => e.stopPropagation()}
+                className="font-semibold text-white text-base bg-surface-950 border border-brand-500 rounded px-1.5 py-0.5 outline-none w-full"
+              />
+            ) : (
+              <>
+                <h3 className="font-semibold text-white text-base">{design.name}</h3>
+                <button onClick={e => { e.stopPropagation(); setEditing(true); }}
+                  className="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-brand-400 transition-all p-0.5 rounded">
+                  <PencilIcon />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Domain + Status */}
+          <div className="flex items-center gap-2 mb-3">
+            <span className={`text-xs px-2 py-0.5 rounded-full border ${domainClass}`}>{design.domain}</span>
+            <span className={`text-xs px-2 py-0.5 rounded-full ${statusClass}`}>{design.status.replace('-', ' ')}</span>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm text-gray-400 line-clamp-2 mb-3">{design.description}</p>
+
+          {/* Plugins */}
+          <div className="flex flex-wrap gap-1">
+            {design.plugins.slice(0, 4).map(p => (
+              <span key={p} className="text-xs bg-surface-950 text-gray-500 rounded px-1.5 py-0.5">
+                {p.replace('@elizaos/', '')}
+              </span>
+            ))}
+            {design.plugins.length > 4 && (
+              <span className="text-xs text-gray-600">+{design.plugins.length - 4}</span>
+            )}
+          </div>
+
+          {/* Date */}
+          <p className="text-xs text-gray-600 mt-3">
+            {new Date(design.createdAt).toLocaleDateString('en', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+          </p>
+        </div>
+      );
+    }
+
+    /* --- My Agents View --- */
+    function AgentsView({ designs, onSelect, onDelete, onRename, onGoCreate }) {
+      return (
+        <div className="flex flex-col h-full">
+          <div className="border-b border-gray-800 px-5 py-3 bg-surface-900 shrink-0 flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-semibold text-white">My Agents</h1>
+              <p className="text-xs text-gray-500">{designs.length} agent{designs.length !== 1 ? 's' : ''} created</p>
+            </div>
+            <button onClick={onGoCreate}
+              className="flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white text-sm rounded-lg px-3 py-1.5 transition-colors">
+              <Icons.plus /> <span className="hidden sm:inline">New Agent</span>
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-4 scrollbar-thin">
+            {designs.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <div className="w-14 h-14 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4">
+                  <Icons.grid />
+                </div>
+                <h2 className="text-lg font-semibold text-white mb-2">No agents yet</h2>
+                <p className="text-sm text-gray-400 mb-4 max-w-sm">
+                  Go to the Create tab and describe an agent. NosShip will design it and it will appear here.
+                </p>
+                <button onClick={onGoCreate}
+                  className="bg-brand-600 hover:bg-brand-700 text-white text-sm rounded-lg px-4 py-2 transition-colors">
+                  Create your first agent
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {designs.sort((a, b) => b.createdAt - a.createdAt).map(d => (
+                  <AgentCard key={d.id} design={d} onClick={() => onSelect(d.id)} onDelete={onDelete} onRename={onRename} />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    /* --- Copy Button --- */
+    function CopyBtn({ text }) {
+      const [copied, setCopied] = useState(false);
+      return (
+        <button onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
+          className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-300 transition-colors">
+          <Icons.copy /> {copied ? 'Copied!' : 'Copy'}
+        </button>
+      );
+    }
+
+    /* --- Code Block --- */
+    function CodeBlock({ title, code, language }) {
+      return (
+        <div className="bg-surface-950 border border-gray-800 rounded-xl overflow-hidden mb-4">
+          <div className="flex items-center justify-between px-4 py-2 border-b border-gray-800 bg-surface-900">
+            <span className="text-xs font-medium text-gray-400">{title}</span>
+            <CopyBtn text={code} />
+          </div>
+          <pre className="p-4 text-sm text-gray-300 overflow-x-auto max-h-[400px] overflow-y-auto scrollbar-thin">
+            <code>{code}</code>
+          </pre>
+        </div>
+      );
+    }
+
+    /* --- Agent Chat View (inside detail) --- */
+    function AgentChatTab({ design }) {
+      const { messages, sendMessage, isTyping } = useAgentChat(design);
+      const scrollRef = useRef(null);
+
+      useEffect(() => {
+        scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+      }, [messages, isTyping]);
+
+      let agentName = design.name;
+      try { agentName = JSON.parse(design.characterJson).name || design.name; } catch {}
+
+      return (
+        <div className="flex flex-col h-full">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 scrollbar-thin">
+            {messages.length === 0 && (
+              <div className="flex flex-col items-center justify-center h-full text-center px-4">
+                <div className="w-14 h-14 rounded-2xl bg-brand-600/20 border border-brand-600/30 flex items-center justify-center mb-4">
+                  <Icons.chat />
+                </div>
+                <h2 className="text-lg font-semibold text-white mb-2">Chat with {agentName}</h2>
+                <p className="text-sm text-gray-400 max-w-md">
+                  This agent uses its own personality and system prompt. Try talking to it!
+                </p>
+              </div>
+            )}
+            {messages.map(msg => <ChatMessage key={msg.id} msg={msg} />)}
+            {isTyping && (
+              <div className="flex items-center gap-1.5 px-4 py-2">
+                <div className="flex gap-1">
+                  <span className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></span>
+                  <span className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></span>
+                  <span className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></span>
+                </div>
+                <span className="text-xs text-gray-500 ml-1">{agentName} is thinking...</span>
+              </div>
+            )}
+          </div>
+          <ChatInput onSend={sendMessage} disabled={isTyping} placeholder={`Message ${agentName}...`} />
+        </div>
+      );
+    }
+
+    /* --- Agent Detail View --- */
+    function DetailView({ design, onBack, onUpdate, agentId, sendToNosShip }) {
+      const [tab, setTab] = useState('chat');
+      const [editingChar, setEditingChar] = useState(false);
+      const [charText, setCharText] = useState(design.characterJson);
+
+      const tabs = [
+        { id: 'chat', label: 'Chat', icon: Icons.chat },
+        { id: 'character', label: 'Character', icon: Icons.code },
+        { id: 'deploy', label: 'Deploy Files', icon: Icons.rocket },
+      ];
+
+      const hasDeployFiles = design.deployFiles && design.deployFiles.dockerfile;
+
+      function handleGenerateDeploy() {
+        sendToNosShip(`Generate deployment files for ${design.name}`);
+      }
+
+      function handleSaveChar() {
+        try {
+          JSON.parse(charText);
+          onUpdate({ ...design, characterJson: charText, updatedAt: Date.now() });
+          setEditingChar(false);
+        } catch { alert('Invalid JSON'); }
+      }
+
+      const domainClass = DOMAIN_COLORS[design.domain] || DOMAIN_COLORS.general;
+
+      // Build deploy commands
+      const username = design.username || design.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const deployCommands = `# 1. Build the Docker image
+docker build -t yourusername/${username}:v1.0 .
+
+# 2. Push to Docker Hub
+docker push yourusername/${username}:v1.0
+
+# 3. Update the image in nosana-job.json (replace yourusername)
+
+# 4. Deploy to Nosana
+nosana job post --file nosana-job.json --market nvidia-4090`;
+
+      return (
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="border-b border-gray-800 px-5 py-3 bg-surface-900 shrink-0">
+            <div className="flex items-center gap-3 mb-1">
+              <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors p-1 -ml-1 rounded-lg hover:bg-gray-800">
+                <Icons.back />
+              </button>
+              <h1 className="text-lg font-semibold text-white">{design.name}</h1>
+              <span className={`text-xs px-2 py-0.5 rounded-full border ${domainClass}`}>{design.domain}</span>
+            </div>
+            <p className="text-xs text-gray-500 ml-9">{design.description.substring(0, 120)}</p>
+          </div>
+
+          {/* Tabs */}
+          <div className="border-b border-gray-800 px-5 bg-surface-900 shrink-0">
+            <div className="flex gap-1">
+              {tabs.map(t => (
+                <button key={t.id} onClick={() => setTab(t.id)}
+                  className={`flex items-center gap-1.5 px-3 py-2.5 text-sm border-b-2 transition-colors
+                    ${tab === t.id
+                      ? 'border-brand-500 text-white'
+                      : 'border-transparent text-gray-500 hover:text-gray-300'
+                    }`}>
+                  <t.icon /> {t.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab Content */}
+          {tab === 'chat' && (
+            <div className="flex-1 overflow-hidden">
+              <AgentChatTab design={design} />
+            </div>
+          )}
+          <div className={`flex-1 overflow-y-auto p-5 scrollbar-thin ${tab === 'chat' ? 'hidden' : ''}`}>
+            {tab === 'character' && (
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-sm font-medium text-gray-400">characters/{username}.character.json</h2>
+                  <div className="flex gap-2">
+                    {editingChar ? (
+                      <>
+                        <button onClick={() => setEditingChar(false)} className="text-xs text-gray-500 hover:text-gray-300 px-2 py-1 rounded">Cancel</button>
+                        <button onClick={handleSaveChar} className="text-xs bg-brand-600 hover:bg-brand-700 text-white px-3 py-1 rounded-lg">Save</button>
+                      </>
+                    ) : (
+                      <button onClick={() => setEditingChar(true)} className="text-xs text-brand-500 hover:text-brand-400 px-2 py-1 rounded">Edit</button>
+                    )}
+                  </div>
+                </div>
+
+                {editingChar ? (
+                  <textarea value={charText} onChange={e => setCharText(e.target.value)}
+                    className="w-full h-[500px] bg-surface-950 border border-gray-800 rounded-xl p-4 text-sm text-gray-300 font-mono resize-none focus:outline-none focus:border-brand-500"
+                    spellCheck="false" />
+                ) : (
+                  <CodeBlock title="character.json" code={(() => {
+                    try { return JSON.stringify(JSON.parse(design.characterJson), null, 2); } catch { return design.characterJson; }
+                  })()} />
+                )}
+
+                {/* Plugins summary */}
+                <div className="mt-4">
+                  <h3 className="text-sm font-medium text-gray-400 mb-2">Plugins</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {design.plugins.map(p => (
+                      <span key={p} className="text-xs bg-surface-800 border border-gray-700 text-gray-300 rounded-lg px-2.5 py-1">
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Env vars */}
+                {design.envVars && design.envVars.length > 0 && (
+                  <div className="mt-4">
+                    <h3 className="text-sm font-medium text-gray-400 mb-2">Required Environment Variables</h3>
+                    <div className="bg-surface-950 border border-gray-800 rounded-xl p-3">
+                      {design.envVars.map(v => (
+                        <div key={v} className="text-sm font-mono text-gray-400 py-0.5">{v}=<span className="text-gray-600">your-value-here</span></div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {tab === 'deploy' && (
+              <div>
+                {!hasDeployFiles ? (
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <div className="w-14 h-14 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4">
+                      <Icons.rocket />
+                    </div>
+                    <h2 className="text-lg font-semibold text-white mb-2">No deploy files yet</h2>
+                    <p className="text-sm text-gray-400 mb-4 max-w-sm">
+                      Generate a Dockerfile, Nosana job definition, and .env template customized for {design.name}.
+                    </p>
+                    <button onClick={handleGenerateDeploy}
+                      className="bg-brand-600 hover:bg-brand-700 text-white text-sm rounded-lg px-4 py-2 transition-colors">
+                      Generate Deploy Files
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <CodeBlock title="Dockerfile" code={design.deployFiles.dockerfile} />
+                    <CodeBlock title="nosana-job.json" code={design.deployFiles.jobDefinition} />
+                    <CodeBlock title=".dockerignore" code={design.deployFiles.dockerignore} />
+                    {design.deployFiles.envFile && (
+                      <CodeBlock title=".env" code={design.deployFiles.envFile} />
+                    )}
+
+                    {/* Deploy button */}
+                    <div className="mt-6 bg-surface-800 border border-gray-800 rounded-xl p-5">
+                      <h3 className="text-base font-semibold text-white mb-1 flex items-center gap-2">
+                        <Icons.rocket /> Deploy to Nosana
+                      </h3>
+                      <p className="text-sm text-gray-400 mb-3">Copy and run these commands to deploy {design.name}:</p>
+                      <div className="bg-surface-950 border border-gray-800 rounded-lg p-4 relative">
+                        <div className="absolute top-2 right-2"><CopyBtn text={deployCommands} /></div>
+                        <pre className="text-sm text-green-400 font-mono whitespace-pre-wrap">{deployCommands}</pre>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    /* ================================================================ */
+    /*  App                                                             */
+    /* ================================================================ */
+
+    function App() {
+      const [view, setView] = useState('create');     // 'create' | 'agents' | 'detail'
+      const [designs, setDesigns] = useState(loadDesigns());
+      const [selectedId, setSelectedId] = useState(null);
+      const [agentId, setAgentId] = useState(null);
+      const [notification, setNotification] = useState(null);
+
+      // Discover NosShip agent ID on mount + sync designs from server
+      useEffect(() => {
+        discoverApi().then(async (id) => {
+          setAgentId(id);
+          if (!API_BASE) return;
+          try {
+            const r = await fetch(`${API_BASE}/designs`);
+            const j = await r.json();
+            if (j.success && j.data.length > 0) {
+              setDesigns(prev => {
+                const localIds = new Set(prev.map(d => d.id));
+                const merged = [...prev];
+                for (const sd of j.data) {
+                  if (!localIds.has(sd.id)) merged.push(sd);
+                }
+                return merged;
+              });
+            }
+          } catch {}
+        });
+      }, []);
+
+      // Persist designs
+      useEffect(() => { saveDesigns(designs); }, [designs]);
+
+      function showNotification(text) {
+        setNotification(text);
+        setTimeout(() => setNotification(null), 3000);
+      }
+
+      function handleAgentCreated(design) {
+        setDesigns(prev => {
+          const exists = prev.find(d => d.id === design.id);
+          if (exists) return prev;
+          return [...prev, design];
+        });
+        syncToServer(design);
+        showNotification(`${design.name} saved to My Agents`);
+      }
+
+      function handleDelete(id) {
+        const d = designs.find(d => d.id === id);
+        if (d && confirm(`Delete ${d.name}?`)) {
+          setDesigns(prev => prev.filter(d => d.id !== id));
+          deleteFromServer(id);
+          if (selectedId === id) { setSelectedId(null); setView('agents'); }
+        }
+      }
+
+      function handleUpdate(updated) {
+        setDesigns(prev => prev.map(d => d.id === updated.id ? updated : d));
+        syncToServer(updated);
+      }
+
+      function handleRename(id, newName) {
+        setDesigns(prev => prev.map(d => {
+          if (d.id !== id) return d;
+          const updated = { ...d, name: newName, updatedAt: Date.now() };
+          /* Also update name inside characterJson if it exists */
+          try {
+            const char = JSON.parse(d.characterJson);
+            char.name = newName;
+            char.username = newName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            updated.characterJson = JSON.stringify(char);
+            updated.username = char.username;
+          } catch {}
+          syncToServer(updated);
+          return updated;
+        }));
+      }
+
+      function handleSelect(id) {
+        setSelectedId(id);
+        setView('detail');
+      }
+
+      function sendToNosShip(text) {
+        setView('create');
+        // Small delay so the view switches first
+        setTimeout(() => {
+          const input = document.querySelector('textarea');
+          if (input) {
+            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value').set;
+            nativeInputValueSetter.call(input, text);
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }, 100);
+      }
+
+      const selectedDesign = designs.find(d => d.id === selectedId);
+
+      return (
+        <div className="h-screen flex overflow-hidden">
+          {/* Sidebar */}
+          <Sidebar view={view === 'detail' ? 'agents' : view} setView={setView} agentCount={designs.length} />
+
+          {/* Main content */}
+          <div className="flex-1 flex flex-col min-w-0">
+            {view === 'create' && (
+              <CreateView agentId={agentId} onAgentCreated={handleAgentCreated} />
+            )}
+            {view === 'agents' && (
+              <AgentsView designs={designs} onSelect={handleSelect} onDelete={handleDelete} onRename={handleRename} onGoCreate={() => setView('create')} />
+            )}
+            {view === 'detail' && selectedDesign && (
+              <DetailView
+                design={selectedDesign}
+                onBack={() => setView('agents')}
+                onUpdate={handleUpdate}
+                agentId={agentId}
+                sendToNosShip={sendToNosShip}
+              />
+            )}
+          </div>
+
+          {/* Notification toast */}
+          {notification && (
+            <div className="fixed bottom-6 right-6 bg-brand-600 text-white text-sm px-4 py-2.5 rounded-xl shadow-lg shadow-brand-600/20 animate-bounce-in z-50 flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
+              {notification}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    /* ================================================================ */
+    /*  Mount                                                           */
+    /* ================================================================ */
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

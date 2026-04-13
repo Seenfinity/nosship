@@ -3,18 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "main": "dist/index.js",
+  "keywords": [
+    "plugin",
+    "elizaos",
+    "nosana",
+    "devops"
+  ],
   "scripts": {
     "start": "elizaos start --character ./characters/agent.character.json",
     "dev": "elizaos dev --character ./characters/agent.character.json"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.52",
     "@elizaos/core": "^1.0.0",
     "@elizaos/plugin-anthropic": "^1.5.12",
     "@elizaos/plugin-bootstrap": "^1.0.0",
-    "@elizaos/plugin-openai": "^1.0.0"
+    "@elizaos/plugin-openai": "^1.0.0",
+    "ai": "^6.0.158"
   },
   "devDependencies": {
     "@elizaos/cli": "^1.0.0",
+    "@types/node": "^25.6.0",
     "typescript": "^5.0.0"
   }
 }

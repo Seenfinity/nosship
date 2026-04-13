@@ -1,5 +1,6 @@
 import type { Action, ActionExample, HandlerCallback } from "@elizaos/core";
 import { CUDA_BASE_IMAGES } from "../utils/constants.js";
+import { getLastDesign, type StoredAgentDesign } from "../utils/agentStore.js";
 
 type Framework = "nodejs" | "python" | "generic";
 
@@ -7,47 +8,70 @@ interface ProjectContext {
   framework: Framework;
   port: number;
   projectName: string;
+  plugins: string[];
+  envVars: string[];
+  fromDesign: boolean;
 }
 
 function detectFramework(text: string): ProjectContext {
+  // Check if there's a stored design from DESIGN_AGENT
+  const stored = getLastDesign();
+
   const lower = text.toLowerCase();
   let framework: Framework = "generic";
   let port = 3000;
   let projectName = "my-app";
+  let plugins: string[] = [];
+  let envVars: string[] = [];
+  let fromDesign = false;
 
-  // Detect framework
+  // If we have a stored design, use it as defaults
+  if (stored) {
+    projectName = stored.username;
+    framework = stored.framework;
+    port = stored.port;
+    plugins = stored.plugins;
+    envVars = stored.envVars;
+    fromDesign = true;
+
+    // Check if the user is referencing the designed agent by name
+    const nameLower = stored.name.toLowerCase();
+    const usernameLower = stored.username.toLowerCase();
+    if (lower.includes(nameLower) || lower.includes(usernameLower)) {
+      // Confirmed — user is asking about the designed agent
+      return { framework, port, projectName, plugins, envVars, fromDesign };
+    }
+  }
+
+  // Override from text if explicitly specified
   if (
-    lower.includes("node") ||
-    lower.includes("express") ||
-    lower.includes("fastify") ||
-    lower.includes("next") ||
-    lower.includes("typescript") ||
-    lower.includes("npm") ||
+    lower.includes("node") || lower.includes("express") || lower.includes("fastify") ||
+    lower.includes("next") || lower.includes("typescript") || lower.includes("npm") ||
     lower.includes("pnpm")
   ) {
     framework = "nodejs";
     port = 3000;
   } else if (
-    lower.includes("python") ||
-    lower.includes("fastapi") ||
-    lower.includes("flask") ||
-    lower.includes("django") ||
-    lower.includes("uvicorn") ||
-    lower.includes("pip")
+    lower.includes("python") || lower.includes("fastapi") || lower.includes("flask") ||
+    lower.includes("django") || lower.includes("uvicorn") || lower.includes("pip")
   ) {
     framework = "python";
     port = 8000;
+  } else if (stored) {
+    // No explicit framework in text — keep the stored one
+  } else {
+    framework = "generic";
   }
 
-  // Try to extract port
+  // Try to extract port from text (overrides stored)
   const portMatch = lower.match(/port\s*(?::|=|is)?\s*(\d{4,5})/);
   if (portMatch) port = parseInt(portMatch[1], 10);
 
-  // Try to extract project name
+  // Try to extract project name from text (overrides stored)
   const nameMatch = text.match(/(?:called|named|project|app)\s+["']?([a-zA-Z0-9_-]+)["']?/i);
   if (nameMatch) projectName = nameMatch[1].toLowerCase();
 
-  return { framework, port, projectName };
+  return { framework, port, projectName, plugins, envVars, fromDesign };
 }
 
 function generateNodeDockerfile(port: number): string {
@@ -168,6 +192,17 @@ CMD ["./start.sh"]
 }
 
 function generateJobDefinition(ctx: ProjectContext): string {
+  // Build env vars: always include basics, add agent-specific ones from design
+  const envObj: Record<string, string> = {
+    NODE_ENV: "production",
+    SERVER_PORT: String(ctx.port),
+  };
+
+  // Add plugin env vars from design as placeholders
+  for (const v of ctx.envVars) {
+    envObj[v] = `__${v}_PLACEHOLDER__`;
+  }
+
   const job = {
     version: "0.1",
     type: "container",
@@ -179,13 +214,10 @@ function generateJobDefinition(ctx: ProjectContext): string {
         id: `run-${ctx.projectName}`,
         args: {
           cmd: [],
-          image: `registry.hub.docker.com/yourusername/${ctx.projectName}:latest`,
+          image: `registry.hub.docker.com/yourusername/${ctx.projectName}:v1.0`,
           gpu: true,
           expose: ctx.port,
-          env: {
-            NODE_ENV: "production",
-            SERVER_PORT: String(ctx.port),
-          },
+          env: envObj,
         },
       },
     ],
@@ -255,11 +287,25 @@ export const generateDeployFiles: Action = {
     const jobDef = generateJobDefinition(ctx);
     const dockerignore = generateDockerignore(ctx.framework);
 
-    const response = `**Generated Deploy Files for ${ctx.framework} project "${ctx.projectName}" (port ${ctx.port})**
+    // Build context-aware header
+    const designNote = ctx.fromDesign
+      ? `> Using config from previously designed agent **${ctx.projectName}**. Plugins and env vars are pre-configured.\n\n`
+      : "";
 
----
+    // Build env vars section for the response
+    const envSection = ctx.envVars.length > 0
+      ? `\n---\n\n### 4. Environment Variables (\`.env\`)\nThese are required by the plugins in your agent:\n\`\`\`env\n${ctx.envVars.map((v) => `${v}=your-value-here`).join("\n")}\nSERVER_PORT=${ctx.port}\n\`\`\`\n`
+      : "";
 
-### 1. Dockerfile
+    // Build plugins note
+    const pluginsNote = ctx.plugins.length > 0
+      ? `**Plugins**: ${ctx.plugins.map((p) => `\`${p}\``).join(", ")}\n`
+      : "";
+
+    const response = `## Deploy Files: ${ctx.projectName}
+${pluginsNote}**Framework**: ${ctx.framework} | **Port**: ${ctx.port}
+
+${designNote}### 1. Dockerfile
 \`\`\`dockerfile
 ${dockerfile}\`\`\`
 
@@ -270,22 +316,23 @@ ${dockerfile}\`\`\`
 ${jobDef}
 \`\`\`
 
-> ⚠️ Replace \`yourusername\` with your Docker Hub username and pin a specific image tag before deploying.
+> Replace \`yourusername\` with your Docker Hub username.
 
 ---
 
 ### 3. .dockerignore
 \`\`\`
 ${dockerignore}\`\`\`
-
+${envSection}
 ---
 
-**Next steps:**
-1. Save these files to your project root
-2. \`docker build -t yourusername/${ctx.projectName}:v1 .\`
-3. \`docker push yourusername/${ctx.projectName}:v1\`
-4. Update the image tag in \`nosana-job.json\`
-5. Deploy: \`nosana job post --file nosana-job.json --market nvidia-4090\``;
+**Deploy steps:**
+1. Save all files to your project root
+2. \`docker build -t yourusername/${ctx.projectName}:v1.0 .\`
+3. \`docker push yourusername/${ctx.projectName}:v1.0\`
+4. Update the image path in \`nosana-job.json\` with your real Docker Hub username
+5. Set real values for env vars in the job definition
+6. \`nosana job post --file nosana-job.json --market nvidia-4090\``;
 
     if (callback) {
       await callback({ text: response });
@@ -297,6 +344,8 @@ ${dockerignore}\`\`\`
         framework: ctx.framework,
         port: ctx.port,
         projectName: ctx.projectName,
+        fromDesign: ctx.fromDesign,
+        plugins: ctx.plugins,
         files: { dockerfile, jobDefinition: jobDef, dockerignore },
       },
     };
