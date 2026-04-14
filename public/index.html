@@ -118,6 +118,15 @@
       return s;
     }
 
+    /* Domain emoji icons */
+    const DOMAIN_ICONS = {
+      'crypto-monitoring': '\u{1F4CA}', 'crypto-trading': '\u{1F4C8}',
+      'defi': '\u{1F4B0}', 'community': '\u{1F4AC}',
+      'social-media': '\u{1F426}', 'dev-tools': '\u{1F6E0}',
+      'research': '\u{1F50D}', 'customer-support': '\u{1F3A7}',
+      'content-creation': '\u{270D}', 'general': '\u{1F916}',
+    };
+
     /* Domain colors/labels */
     const DOMAIN_COLORS = {
       'crypto-monitoring': 'bg-yellow-950/50 text-yellow-400 border-yellow-800/60',
@@ -369,11 +378,12 @@
     /* ================================================================ */
 
     /* --- Sidebar --- */
-    function Sidebar({ view, setView, agentCount }) {
+    function Sidebar({ view, setView, agentCount, designs, onSelectAgent, onTour }) {
       const items = [
         { id: 'create', label: 'Create', icon: Icons.plus },
         { id: 'agents', label: 'My Agents', icon: Icons.grid, badge: agentCount },
       ];
+      const recentAgents = (designs || []).sort((a, b) => b.createdAt - a.createdAt).slice(0, 6);
       return (
         <div className="w-16 md:w-56 bg-surface-900 border-r border-gray-800/50 flex flex-col h-full shrink-0">
           {/* Logo */}
@@ -391,7 +401,7 @@
           </div>
 
           {/* Nav */}
-          <nav className="flex-1 p-2.5 space-y-1">
+          <nav className="p-2.5 space-y-1">
             {items.map(item => (
               <button key={item.id} onClick={() => setView(item.id)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-sm font-medium
@@ -408,8 +418,31 @@
             ))}
           </nav>
 
+          {/* Agent list */}
+          {recentAgents.length > 0 && (
+            <div className="hidden md:block flex-1 overflow-y-auto scrollbar-thin px-2.5 pb-2">
+              <p className="text-[10px] text-gray-600 uppercase tracking-wider px-2 mb-1.5">Agents</p>
+              <div className="space-y-0.5">
+                {recentAgents.map(d => (
+                  <button key={d.id} onClick={() => onSelectAgent(d.id)}
+                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-gray-400 hover:bg-surface-800 hover:text-gray-200 transition-all truncate">
+                    <span className="text-sm shrink-0">{DOMAIN_ICONS[d.domain] || '\u{1F916}'}</span>
+                    <span className="truncate">{d.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {recentAgents.length === 0 && <div className="flex-1" />}
+
           {/* Footer */}
-          <div className="hidden md:block p-3 border-t border-gray-800/50">
+          <div className="hidden md:block p-3 border-t border-gray-800/50 space-y-2">
+            <div className="flex items-center gap-3 flex-wrap">
+              <a href="https://docs.nosana.io" target="_blank" rel="noopener" className="text-[10px] text-gray-500 hover:text-brand-400 transition-colors">Docs</a>
+              <a href="https://github.com/Seenfinity/nosship" target="_blank" rel="noopener" className="text-[10px] text-gray-500 hover:text-brand-400 transition-colors">GitHub</a>
+              <a href="https://app.nosana.io" target="_blank" rel="noopener" className="text-[10px] text-gray-500 hover:text-brand-400 transition-colors">Dashboard</a>
+              <button onClick={onTour} className="text-[10px] text-gray-500 hover:text-brand-400 transition-colors">Tour</button>
+            </div>
             <p className="text-[10px] text-gray-600 tracking-wide uppercase">Powered by Nosana</p>
           </div>
         </div>
@@ -468,9 +501,9 @@
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
               rows="1"
               placeholder={placeholder || "Describe the agent you want to create..."}
-              className="flex-1 bg-surface-950 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white resize-none
+              className="flex-1 bg-surface-950 border border-brand-500/20 rounded-xl px-4 py-2.5 text-sm text-white resize-none
                 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30
-                placeholder-gray-500"
+                placeholder-gray-500 shadow-[0_0_8px_rgba(0,255,65,0.06)]"
               style={{ minHeight: '42px', maxHeight: '120px' }}
               onInput={e => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
             />
@@ -485,7 +518,7 @@
     }
 
     /* --- Create View (NosShip Chat) --- */
-    function CreateView({ agentId, onAgentCreated }) {
+    function CreateView({ agentId, onAgentCreated, designs, onSelectAgent }) {
       const { messages, sendMessage, isTyping } = useNosShipChat(agentId);
       const scrollRef = useRef(null);
       const processedRef = useRef(new Set());
@@ -540,12 +573,21 @@
         } catch {}
       }, [messages]);
 
+      const recentDesigns = (designs || []).sort((a, b) => b.createdAt - a.createdAt).slice(0, 3);
+
+      const suggestions = [
+        { icon: '\u{1F4CA}', text: 'A crypto price monitor for Solana with Telegram alerts' },
+        { icon: '\u{1F4AC}', text: 'A Discord community manager that moderates and posts summaries' },
+        { icon: '\u{1F4B0}', text: 'A DeFi yield hunter for Ethereum and Solana' },
+        { icon: '\u{1F426}', text: 'A Twitter agent that posts daily market analysis' },
+      ];
+
       return (
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="border-b border-gray-800 px-5 py-3 bg-surface-900 shrink-0">
             <h1 className="text-lg font-semibold text-white">Create an Agent</h1>
-            <p className="text-xs text-gray-500">Describe what you want and NosShip builds it</p>
+            <p className="text-xs text-brand-500/80 font-medium">From idea to running agent in minutes</p>
           </div>
 
           {/* Messages */}
@@ -558,20 +600,37 @@
                 }
                 <h2 className="text-lg font-semibold text-white mb-2">What agent do you want to build?</h2>
                 <p className="text-sm text-gray-400 max-w-md mb-6">
-                  Describe your agent in plain English. NosShip will generate a complete character file, select the right plugins, and prepare deployment files.
+                  What agent do you need? Describe it and NosShip handles the rest — from personality to deployment.
                 </p>
-                <div className="flex flex-wrap gap-2 justify-center max-w-lg">
-                  {[
-                    "A crypto price monitor for Solana with Telegram alerts",
-                    "A Discord community manager that moderates and posts summaries",
-                    "A DeFi yield hunter for Ethereum and Solana",
-                    "A Twitter agent that posts daily market analysis",
-                  ].map((suggestion, i) => (
-                    <button key={i} onClick={() => sendMessage("Create an agent: " + suggestion)}
-                      className="text-xs bg-surface-800 hover:bg-surface-700 border border-gray-700 hover:border-brand-500/30 text-gray-300 hover:text-brand-400 rounded-lg px-3 py-1.5 transition-all">
-                      {suggestion}
+                <div className="flex flex-wrap gap-2 justify-center max-w-lg mb-8">
+                  {suggestions.map((s, i) => (
+                    <button key={i} onClick={() => sendMessage("Create an agent: " + s.text)}
+                      className="flex items-center gap-1.5 text-xs bg-surface-800 hover:bg-surface-700 border border-gray-700 hover:border-brand-500/30 text-gray-300 hover:text-brand-400 rounded-lg px-3 py-1.5 transition-all">
+                      <span className="text-sm">{s.icon}</span>
+                      <span>{s.text}</span>
                     </button>
                   ))}
+                </div>
+
+                {/* Recent agents */}
+                <div className="w-full max-w-lg">
+                  <p className="text-[11px] text-gray-500 uppercase tracking-wider mb-2">Recent Agents</p>
+                  {recentDesigns.length === 0 ? (
+                    <p className="text-xs text-gray-600">Your agents will appear here</p>
+                  ) : (
+                    <div className="flex gap-2 justify-center">
+                      {recentDesigns.map(d => (
+                        <button key={d.id} onClick={() => onSelectAgent(d.id)}
+                          className="flex items-center gap-2 bg-surface-800/80 border border-gray-800 hover:border-brand-500/30 rounded-lg px-3 py-2 transition-all group">
+                          <span className="text-sm">{DOMAIN_ICONS[d.domain] || '\u{1F916}'}</span>
+                          <div className="text-left">
+                            <p className="text-xs font-medium text-gray-300 group-hover:text-brand-400 transition-colors truncate max-w-[120px]">{d.name}</p>
+                            <p className="text-[10px] text-gray-600">{d.domain}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -747,12 +806,26 @@
       let agentName = design.name;
       try { agentName = JSON.parse(design.characterJson).name || design.name; } catch {}
 
+      const domainClass = DOMAIN_COLORS[design.domain] || DOMAIN_COLORS.general;
+      const domainIcon = DOMAIN_ICONS[design.domain] || '\u{1F916}';
+
       return (
         <div className="flex flex-col h-full">
+          {/* Agent identity bar */}
+          <div className="px-4 py-2.5 border-b border-gray-800/50 bg-surface-800/50 flex items-center gap-2.5 shrink-0">
+            <span className="text-base">{domainIcon}</span>
+            <span className="text-sm font-medium text-white">{agentName}</span>
+            <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${domainClass}`}>{design.domain}</span>
+            <span className="ml-auto flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+              <span className="text-[10px] text-gray-500">Online</span>
+            </span>
+          </div>
+
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 scrollbar-thin">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full text-center px-4">
-                <div className="w-14 h-14 rounded-2xl bg-brand-600/20 border border-brand-600/30 flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-4">
                   <Icons.chat />
                 </div>
                 <h2 className="text-lg font-semibold text-white mb-2">Chat with {agentName}</h2>
@@ -810,33 +883,48 @@ docker push yourusername/${username}:v1.0
 # 4. Deploy to Nosana
 nosana job post --file nosana-job.json --market nvidia-4090`;
 
+      const domainIcon = DOMAIN_ICONS[design.domain] || '\u{1F916}';
+      const statusClass = STATUS_BADGES[design.status] || STATUS_BADGES.created;
+
       return (
         <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="border-b border-gray-800 px-5 py-3 bg-surface-900 shrink-0">
-            <div className="flex items-center gap-3 mb-1">
-              <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors p-1 -ml-1 rounded-lg hover:bg-gray-800">
-                <Icons.back />
-              </button>
-              <h1 className="text-lg font-semibold text-white">{design.name}</h1>
-              <span className={`text-xs px-2 py-0.5 rounded-full border ${domainClass}`}>{design.domain}</span>
-            </div>
-            <p className="text-xs text-gray-500 ml-9">{design.description.substring(0, 120)}</p>
-          </div>
-
-          {/* Tabs */}
-          <div className="border-b border-gray-800 px-5 bg-surface-900 shrink-0">
-            <div className="flex gap-1">
-              {tabs.map(t => (
-                <button key={t.id} onClick={() => setTab(t.id)}
-                  className={`flex items-center gap-1.5 px-3 py-2.5 text-sm border-b-2 transition-colors
-                    ${tab === t.id
-                      ? 'border-brand-500 text-white'
-                      : 'border-transparent text-gray-500 hover:text-gray-300'
-                    }`}>
-                  <t.icon /> {t.label}
+          {/* Profile header */}
+          <div className="border-b border-gray-800 bg-surface-900 shrink-0">
+            <div className="px-5 py-4">
+              <div className="flex items-start gap-4">
+                <button onClick={onBack} className="text-gray-400 hover:text-white transition-colors p-1 mt-0.5 -ml-1 rounded-lg hover:bg-gray-800 shrink-0">
+                  <Icons.back />
                 </button>
-              ))}
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                  <div className="w-11 h-11 rounded-xl bg-surface-800 border border-gray-700 flex items-center justify-center text-xl shrink-0">
+                    {domainIcon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h1 className="text-lg font-bold text-white truncate">{design.name}</h1>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full border ${domainClass}`}>{design.domain}</span>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full ${statusClass}`}>{design.status.replace('-', ' ')}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-0.5 truncate">{design.description.substring(0, 140)}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tabs */}
+            <div className="px-5">
+              <div className="flex gap-1">
+                {tabs.map(t => (
+                  <button key={t.id} onClick={() => setTab(t.id)}
+                    className={`flex items-center gap-1.5 px-3 py-2.5 text-sm border-b-2 transition-colors
+                      ${tab === t.id
+                        ? 'border-brand-500 text-white'
+                        : 'border-transparent text-gray-500 hover:text-gray-300'
+                      }`}>
+                    <t.icon /> {t.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -903,7 +991,7 @@ nosana job post --file nosana-job.json --market nvidia-4090`;
               <div>
                 {!hasDeployFiles ? (
                   <div className="flex flex-col items-center justify-center py-16 text-center">
-                    <div className="w-14 h-14 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-4 text-brand-500">
                       <Icons.rocket />
                     </div>
                     <h2 className="text-lg font-semibold text-white mb-2">No deploy files yet</h2>
@@ -911,28 +999,45 @@ nosana job post --file nosana-job.json --market nvidia-4090`;
                       Generate a Dockerfile, Nosana job definition, and .env template customized for {design.name}.
                     </p>
                     <button onClick={handleGenerateDeploy}
-                      className="bg-brand-600 hover:bg-brand-700 text-white text-sm rounded-lg px-4 py-2 transition-colors">
+                      className="bg-brand-500 hover:bg-brand-600 text-surface-950 font-semibold text-sm rounded-xl px-5 py-2.5 transition-colors">
                       Generate Deploy Files
                     </button>
                   </div>
                 ) : (
-                  <div>
-                    <CodeBlock title="Dockerfile" code={design.deployFiles.dockerfile} />
-                    <CodeBlock title="nosana-job.json" code={design.deployFiles.jobDefinition} />
-                    <CodeBlock title=".dockerignore" code={design.deployFiles.dockerignore} />
-                    {design.deployFiles.envFile && (
-                      <CodeBlock title=".env" code={design.deployFiles.envFile} />
-                    )}
+                  <div className="space-y-4">
+                    {/* File cards */}
+                    {[
+                      { title: 'Dockerfile', icon: '\u{1F433}', desc: 'Multi-stage container build', code: design.deployFiles.dockerfile },
+                      { title: 'nosana-job.json', icon: '\u{2699}', desc: 'Nosana GPU job definition', code: design.deployFiles.jobDefinition },
+                      { title: '.dockerignore', icon: '\u{1F6AB}', desc: 'Files excluded from build', code: design.deployFiles.dockerignore },
+                      ...(design.deployFiles.envFile ? [{ title: '.env', icon: '\u{1F511}', desc: 'Environment variables template', code: design.deployFiles.envFile }] : []),
+                    ].map(file => (
+                      <div key={file.title} className="bg-surface-800 border border-gray-800 rounded-xl overflow-hidden">
+                        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800/50">
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-base">{file.icon}</span>
+                            <div>
+                              <p className="text-sm font-medium text-white">{file.title}</p>
+                              <p className="text-[10px] text-gray-500">{file.desc}</p>
+                            </div>
+                          </div>
+                          <CopyBtn text={file.code} />
+                        </div>
+                        <pre className="p-4 text-xs text-gray-400 overflow-x-auto max-h-[280px] overflow-y-auto scrollbar-thin bg-surface-950/50 font-mono">
+                          <code>{file.code}</code>
+                        </pre>
+                      </div>
+                    ))}
 
-                    {/* Deploy button */}
-                    <div className="mt-6 bg-surface-800 border border-gray-800 rounded-xl p-5">
+                    {/* Deploy commands */}
+                    <div className="bg-surface-800 border border-brand-500/20 rounded-xl p-5">
                       <h3 className="text-base font-semibold text-white mb-1 flex items-center gap-2">
                         <Icons.rocket /> Deploy to Nosana
                       </h3>
                       <p className="text-sm text-gray-400 mb-3">Copy and run these commands to deploy {design.name}:</p>
                       <div className="bg-surface-950 border border-gray-800 rounded-lg p-4 relative">
                         <div className="absolute top-2 right-2"><CopyBtn text={deployCommands} /></div>
-                        <pre className="text-sm text-green-400 font-mono whitespace-pre-wrap">{deployCommands}</pre>
+                        <pre className="text-sm text-brand-400 font-mono whitespace-pre-wrap">{deployCommands}</pre>
                       </div>
                     </div>
                   </div>
@@ -1020,6 +1125,11 @@ nosana job post --file nosana-job.json --market nvidia-4090`;
       function finishOnboarding() {
         localStorage.setItem(ONBOARDING_KEY, '1');
         setShowOnboarding(false);
+      }
+
+      function startTour() {
+        localStorage.removeItem(ONBOARDING_KEY);
+        setShowOnboarding(true);
       }
 
       // Discover NosShip agent ID on mount + sync designs from server
@@ -1116,13 +1226,13 @@ nosana job post --file nosana-job.json --market nvidia-4090`;
       return (
         <div className="h-screen flex overflow-hidden">
           {/* Sidebar */}
-          <Sidebar view={view === 'detail' ? 'agents' : view} setView={setView} agentCount={designs.length} />
+          <Sidebar view={view === 'detail' ? 'agents' : view} setView={setView} agentCount={designs.length} designs={designs} onSelectAgent={handleSelect} onTour={startTour} />
 
           {/* Main content */}
           <div className="flex-1 flex flex-col min-w-0">
             {view === 'create' && (
               <div className="animate-fade-in flex-1 flex flex-col min-h-0">
-                <CreateView agentId={agentId} onAgentCreated={handleAgentCreated} />
+                <CreateView agentId={agentId} onAgentCreated={handleAgentCreated} designs={designs} onSelectAgent={handleSelect} />
               </div>
             )}
             {view === 'agents' && (

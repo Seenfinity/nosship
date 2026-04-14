@@ -18,7 +18,12 @@ RUN pnpm install
 # 2. Source code + compile TypeScript
 COPY tsconfig.json ./
 COPY src/ src/
+COPY scripts/ scripts/
+COPY public/ public/
 RUN npx tsc
+
+# 3a. Inject NosShip UI into ElizaOS client
+RUN node scripts/inject-ui.mjs
 
 # 3. Create local plugin symlink so ElizaOS can load "nosship"
 RUN ln -sf /app node_modules/nosship

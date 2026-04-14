@@ -87,7 +87,7 @@ function getMimeType(ext: string): string {
 }
 
 export const nosshipRoutes: Route[] = [
-  // Serve the NosShip UI
+  // Serve the NosShip UI (fallback; primary serving is via inject-ui.mjs)
   {
     type: "GET",
     path: "/app",
