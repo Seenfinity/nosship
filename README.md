@@ -16,7 +16,7 @@
 
 ## What is NosShip?
 
-NosShipp is a personal agent factory powered by decentralized GPUs. You describe what agent you want in plain language — a crypto price monitor, a Discord community manager, a DeFi yield hunter — and NosShip generates everything: character file with domain-specific personality, plugin stack, Dockerfile, and Nosana job definition. Then you chat directly with each agent you've created, each responding in its own voice and role.
+NosShip is a personal agent factory powered by decentralized GPUs. You describe what agent you want in plain language — a crypto price monitor, a Discord community manager, a DeFi yield hunter — and NosShip generates everything: character file with domain-specific personality, plugin stack, Dockerfile, and Nosana job definition. Then you chat directly with each agent you've created, each responding in its own voice and role.
 
 No boilerplate. No config files. Just describe → create → chat → deploy.
 
