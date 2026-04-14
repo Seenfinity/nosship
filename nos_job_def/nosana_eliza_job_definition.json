@@ -11,7 +11,7 @@
       "args": {
         "cmd": [],
         "image": "registry.hub.docker.com/seenfinity/nosship:latest",
-        "gpu": false,
+        "gpu": true,
         "expose": 3000,
         "env": {
           "OPENAI_API_KEY": "nosana",

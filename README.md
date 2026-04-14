@@ -59,7 +59,9 @@ nosana job post --file nosana-job.json --market nvidia-4090
 
 ## Demo
 
-> Video demo coming soon
+[![NosShip Demo](https://img.shields.io/badge/Watch%20Demo-X%2FTwitter-black?style=for-the-badge&logo=x)](https://x.com/seenfinity/status/2043992536868384961)
+
+https://x.com/seenfinity/status/2043992536868384961
 
 ---
 
