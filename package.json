@@ -11,7 +11,7 @@
     "devops"
   ],
   "scripts": {
-    "postinstall": "node scripts/inject-ui.mjs",
+    "postinstall": "node scripts/inject-ui.mjs || true",
     "prestart": "node scripts/inject-ui.mjs",
     "start": "elizaos start --character ./characters/agent.character.json",
     "predev": "node scripts/inject-ui.mjs",
