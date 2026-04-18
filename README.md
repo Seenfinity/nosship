@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://nosana.io">Nosana GPU</a> · <a href="https://elizaos.com">ElizaOS v2</a> · <a href="#demo">Demo</a>
+  <a href="https://nosana.io">Nosana GPU</a> · <a href="https://elizaos.ai">ElizaOS v2</a> · <a href="#demo">Demo</a>
 </p>
 
 ---
